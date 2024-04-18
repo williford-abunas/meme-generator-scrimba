@@ -1,9 +1,10 @@
 import React from 'react'
+import Navbar from './components/Navbar.tsx'
 
 function App() {
   return (
     <div className="App">
-      <h1>Meme Generator</h1>
+      <Navbar />
     </div>
   )
 }
