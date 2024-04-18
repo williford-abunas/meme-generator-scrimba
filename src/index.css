@@ -42,6 +42,27 @@ h3 {
   margin-bottom: 5px;
 }
 
+form {
+  display: grid;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+input {
+  padding: 0.3rem;
+}
+button {
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: blueviolet;
+  color: white;
+  font-weight: 600;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 /* ------------------------------ MEDIA ----------------------------------- */
 @media (min-width: 625px) {
   nav {
@@ -62,5 +83,27 @@ h3 {
   h3 {
     font-size: 1rem;
     margin-bottom: 5px;
+  }
+
+  form {
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  button {
+    grid-column: 1 / span 2;
+    font-size: 1rem;
+    padding: 1rem;
+    width: 60%;
+    justify-self: center;
+  }
+
+  input {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    width: 100%;
   }
 }
