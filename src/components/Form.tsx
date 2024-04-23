@@ -9,8 +9,6 @@ const Form = () => {
     randomImage: 'http://i.imgflip.com/1bij.jpg',
   })
 
-  const [allImages, setAllImages] = useState(memesData.data)
-
   function getMemeImage() {
     const memesArray = memesData.data.memes
     const randomNumber = Math.floor(Math.random() * memesArray.length)
