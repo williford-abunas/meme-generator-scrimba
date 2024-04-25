@@ -14,13 +14,14 @@ const Form = () => {
   const id = useId()
 
   useEffect(() => {
-    console.log('Effect ran')
-    if (allMemes.length === 0) {
-      fetch('https://api.imgflip.com/get_memes')
-        .then((res) => res.json())
-        .then((data) => setAllmemes(data.data.memes))
+    const getMemes = async () => {
+      const res = await fetch('https://api.imgflip.com/get_memes')
+      const data = await res.json()
+      setAllmemes(data.data.memes)
     }
-  }, [allMemes])
+
+    getMemes()
+  }, [])
 
   function getMemeImage() {
     const memesArray = allMemes
