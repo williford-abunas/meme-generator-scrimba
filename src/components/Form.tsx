@@ -40,6 +40,17 @@ const Form = () => {
     setMeme((prevMeme) => ({ ...prevMeme, [name]: value }))
   }
 
+  function handleDownload() {
+    // Create a new <a> element
+    const link = document.createElement('a')
+    link.href = meme.randomImage
+    link.download = 'meme.png' // Set the default filename
+    link.target = '_blank'
+    document.body.appendChild(link)
+    link.click() // Trigger the download
+    document.body.removeChild(link) // Clean up after download
+  }
+
   return (
     <>
       <div className="form">
@@ -67,6 +78,7 @@ const Form = () => {
         </div>
 
         <button onClick={getMemeImage}>Get a new meme image 🖼️</button>
+        <button onClick={handleDownload}>Download Meme ⬇️</button>
         <div className="meme">
           <img src={meme.randomImage} alt="meme" className="meme--image" />
           <h2 className="meme--text top">{meme.topText}</h2>
