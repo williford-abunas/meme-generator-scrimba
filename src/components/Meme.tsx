@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import MemeText from './MemeText.tsx'
 
 const Meme = (props: any) => {
   const { memeRef, meme, handleImageLoad } = props
@@ -46,20 +47,18 @@ const Meme = (props: any) => {
         onLoad={handleImageLoad}
         draggable="false"
       />
-      <h2
-        className="meme--text top"
-        style={{ top: `${topTextPos.y}%`, left: `${topTextPos.x}%` }}
-        onMouseDown={(e) => handleMouseDown(e, 'top')}
-      >
-        {meme.topText}
-      </h2>
-      <h2
-        className="meme--text bottom"
-        style={{ top: `${bottomTextPos.y}%`, left: `${bottomTextPos.x}%` }}
-        onMouseDown={(e) => handleMouseDown(e, 'bottom')}
-      >
-        {meme.bottomText}
-      </h2>
+      <MemeText
+        meme={meme}
+        position={topTextPos}
+        handleMouseDown={handleMouseDown}
+        whichPos="top"
+      />
+      <MemeText
+        meme={meme}
+        position={bottomTextPos}
+        handleMouseDown={handleMouseDown}
+        whichPos="bottom"
+      />
     </div>
   )
 }
