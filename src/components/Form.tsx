@@ -15,6 +15,8 @@ const Form = () => {
   const [allMemes, setAllmemes] = useState([])
   const memeRef = useRef<HTMLDivElement | null>(null)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
+  const [topTextPos, setTopTextPos] = useState({ x: 50, y: 10 })
+  const [bottomTextPos, setBottomTextPos] = useState({ x: 50, y: 80 })
 
   const id = useId()
 
@@ -97,6 +99,12 @@ const Form = () => {
           memeRef={memeRef}
           meme={meme}
           handleImageLoad={() => setIsImageLoaded(true)}
+          topTextPos={topTextPos}
+          setTopTextPos={setTopTextPos}
+          bottomTextPos={bottomTextPos}
+          setBottomTextPos={setBottomTextPos}
+          isImageLoaded={isImageLoaded}
+          setIsImageLoaded={setIsImageLoaded}
         />
       </div>
     </>

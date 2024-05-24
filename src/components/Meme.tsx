@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import MemeText from './MemeText.tsx'
 
 const Meme = (props: any) => {
-  const { memeRef, meme, handleImageLoad } = props
-  const [topTextPos, setTopTextPos] = useState({ x: 50, y: 10 })
-  const [bottomTextPos, setBottomTextPos] = useState({ x: 50, y: 80 })
+  const {
+    memeRef,
+    meme,
+    handleImageLoad,
+    topTextPos,
+    setTopTextPos,
+    bottomTextPos,
+    setBottomTextPos,
+    isImageLoaded,
+  } = props
+
   const [dragging, setDragging] = useState({ isDragging: false, which: null })
+
+  useEffect(() => {
+    if (isImageLoaded) {
+      setTopTextPos({ x: 50, y: 10 })
+      setBottomTextPos({ x: 50, y: 80 })
+    }
+  }, [isImageLoaded, setTopTextPos, setBottomTextPos])
 
   const handleMouseDown = (e, which) => {
     e.preventDefault()
