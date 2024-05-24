@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useId, useEffect, useRef } from 'react'
 import html2canvas from 'html2canvas'
+import TextInput from './TextInput.tsx'
+import Meme from './Meme.tsx'
 
 const Form = () => {
   console.log('Component rendered')
@@ -69,45 +71,34 @@ const Form = () => {
   return (
     <>
       <div className="form">
-        <div className="input-group">
-          <label htmlFor={id + 'top-text'}>Top text</label>
-          <input
-            type="text"
-            id={id + 'top-text'}
-            placeholder="Top Text..."
-            name="topText"
-            value={meme.topText}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor={id + 'bottom-text'}>Bottom text</label>
-          <input
-            type="text"
-            id={id + 'bottom-text'}
-            placeholder="Bottom Text..."
-            name="bottomText"
-            value={meme.bottomText}
-            onChange={handleChange}
-          />
-        </div>
+        <TextInput
+          id={id + 'top-text'}
+          placeholder="Top-text..."
+          name="topText"
+          value={meme.topText}
+          handleChange={handleChange}
+        >
+          Top text
+        </TextInput>
+        <TextInput
+          id={id + 'bottom-text'}
+          placeholder="Bottom-text..."
+          name="bottomText"
+          value={meme.bottomText}
+          handleChange={handleChange}
+        >
+          Bottom text
+        </TextInput>
 
         <button onClick={getMemeImage}>Get a new meme image 🖼️</button>
         <button onClick={handleDownload} disabled={!isImageLoaded}>
           {isImageLoaded ? 'Download Meme ⬇️' : 'Loading Meme...'}
         </button>
-        <div className="meme" ref={memeRef}>
-          <img
-            src={meme.randomImage}
-            alt="meme"
-            className="meme--image"
-            style={{ width: '100%', height: '100%' }}
-            crossOrigin="anonymous"
-            onLoad={() => setIsImageLoaded(true)}
-          />
-          <h2 className="meme--text top">{meme.topText}</h2>
-          <h2 className="meme--text bottom">{meme.bottomText}</h2>
-        </div>
+        <Meme
+          memeRef={memeRef}
+          meme={meme}
+          handleImageLoad={() => setIsImageLoaded(true)}
+        />
       </div>
     </>
   )
