@@ -13,7 +13,7 @@ const Navbar = () => {
           <h1>Meme Generator</h1>
         </div>
 
-        <h3>React Course - Project 3</h3>
+        <h3>Will's React Project</h3>
       </nav>
     </header>
   )

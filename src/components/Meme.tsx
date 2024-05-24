@@ -48,13 +48,13 @@ const Meme = (props: any) => {
         draggable="false"
       />
       <MemeText
-        meme={meme}
+        memeText={meme.topText}
         position={topTextPos}
         handleMouseDown={handleMouseDown}
         whichPos="top"
       />
       <MemeText
-        meme={meme}
+        memeText={meme.bottomText}
         position={bottomTextPos}
         handleMouseDown={handleMouseDown}
         whichPos="bottom"
