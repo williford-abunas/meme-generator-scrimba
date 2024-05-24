@@ -52,7 +52,6 @@ const Form = () => {
         const canvas = await html2canvas(memeRef.current, {
           useCORS: true,
         })
-        console.log(canvas)
         const dataUrl = canvas.toDataURL('image/png')
         // Create a new <a> element
         const link = document.createElement('a')
