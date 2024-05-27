@@ -4,19 +4,36 @@ import html2canvas from 'html2canvas'
 import TextInput from './TextInput.tsx'
 import Meme from './Meme.tsx'
 
-const Form = () => {
+type MemeState = {
+  topText: string
+  bottomText: string
+  randomImage: string
+}
+
+type MemeData = {
+  id: string
+  name: string
+  url: string
+}
+
+type Position = {
+  x: number
+  y: number
+}
+
+const Form: React.FC = () => {
   console.log('Component rendered')
-  const [meme, setMeme] = useState({
+  const [meme, setMeme] = useState<MemeState>({
     topText: '',
     bottomText: '',
     randomImage: 'http://i.imgflip.com/1bij.jpg',
   })
 
-  const [allMemes, setAllmemes] = useState([])
+  const [allMemes, setAllmemes] = useState<MemeData[]>([])
   const memeRef = useRef<HTMLDivElement | null>(null)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
-  const [topTextPos, setTopTextPos] = useState({ x: 50, y: 10 })
-  const [bottomTextPos, setBottomTextPos] = useState({ x: 50, y: 80 })
+  const [topTextPos, setTopTextPos] = useState<Position>({ x: 50, y: 10 })
+  const [bottomTextPos, setBottomTextPos] = useState<Position>({ x: 50, y: 80 })
 
   const id = useId()
 
@@ -43,7 +60,7 @@ const Form = () => {
     setIsImageLoaded(false) // Reset image load state
   }
 
-  function handleChange(event: any) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target
     setMeme((prevMeme) => ({ ...prevMeme, [name]: value }))
   }
