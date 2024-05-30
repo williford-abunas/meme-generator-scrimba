@@ -1,6 +1,12 @@
 import React from 'react'
 
-const MemeText = (props) => {
+type MemeTextProps = {
+  position: { x: number; y: number }
+  memeText: string
+  whichPos: string
+  handleMouseDown: (e: React.MouseEvent, whichPos: string) => void
+}
+const MemeText = (props: MemeTextProps) => {
   const { position, memeText, whichPos, handleMouseDown } = props
   return (
     <h2

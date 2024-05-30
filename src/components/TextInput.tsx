@@ -1,6 +1,15 @@
 import React from 'react'
 
-const TextInput = (props: any) => {
+type TextInputProps = {
+  children: string
+  id: string
+  placeholder: string
+  name: string
+  value: string
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const TextInput = (props: TextInputProps) => {
   const { children, id, placeholder, name, value, handleChange } = props
   return (
     <div className="input-group">
