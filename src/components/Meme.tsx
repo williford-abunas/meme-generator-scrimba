@@ -1,8 +1,20 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import MemeText from './MemeText.tsx'
+import type { MemeState } from '../types/types.tsx'
 
-const Meme = (props: any) => {
+type MemeProps = {
+  memeRef: React.RefObject<HTMLDivElement>
+  meme: MemeState
+  handleImageLoad: () => void
+  topTextPos: { x: number; y: number }
+  setTopTextPos: (pos: { x: number; y: number }) => void
+  bottomTextPos: { x: number; y: number }
+  setBottomTextPos: (pos: { x: number; y: number }) => void
+  isImageLoaded: boolean
+}
+
+const Meme = (props: MemeProps) => {
   const {
     memeRef,
     meme,
@@ -14,7 +26,10 @@ const Meme = (props: any) => {
     isImageLoaded,
   } = props
 
-  const [dragging, setDragging] = useState({ isDragging: false, which: null })
+  const [dragging, setDragging] = useState<{
+    isDragging: boolean
+    which: string | null
+  }>({ isDragging: false, which: null })
 
   useEffect(() => {
     if (isImageLoaded) {
@@ -23,15 +38,21 @@ const Meme = (props: any) => {
     }
   }, [isImageLoaded, setTopTextPos, setBottomTextPos])
 
-  const handleMouseDown = (e, which) => {
+  const handleMouseDown = (
+    e: React.MouseEvent<HTMLDivElement>,
+    which: string | null
+  ) => {
     e.preventDefault()
+    if (which === null) return
+
     setDragging({ isDragging: true, which })
   }
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!dragging.isDragging) return
 
-    const rect = memeRef.current.getBoundingClientRect()
+    const rect = memeRef.current?.getBoundingClientRect()
+    if (!rect) return
     const x = ((e.clientX - rect.left) / rect.width) * 100
     const y = ((e.clientY - rect.top) / rect.height) * 100
 
@@ -39,6 +60,8 @@ const Meme = (props: any) => {
       setTopTextPos({ x, y })
     } else if (dragging.which === 'bottom') {
       setBottomTextPos({ x, y })
+    } else if (dragging.which === null) {
+      return
     }
   }
 

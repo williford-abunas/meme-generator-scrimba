@@ -3,23 +3,7 @@ import { useState, useId, useEffect, useRef } from 'react'
 import html2canvas from 'html2canvas'
 import TextInput from './TextInput.tsx'
 import Meme from './Meme.tsx'
-
-type MemeState = {
-  topText: string
-  bottomText: string
-  randomImage: string
-}
-
-type MemeData = {
-  id: string
-  name: string
-  url: string
-}
-
-type Position = {
-  x: number
-  y: number
-}
+import type { Position, MemeState, MemeData } from '../types/types.tsx'
 
 const Form: React.FC = () => {
   console.log('Component rendered')
